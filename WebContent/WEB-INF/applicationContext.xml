@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	  http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="MySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="mappingResources">
+            <list>
+                <value>DVDTO.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <!--
+          <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+          <prop key="hibernate.connection.url">jdbc:mysql://localhost/springdemos</prop>
+          <prop key="hibernate.connection.username">root</prop>
+          <prop key="hibernate.connection.password">masterkey</prop>
+          <prop key="hibernate.connection.pool_size">2</prop>
+                -->
+                <prop key="hibernate.dialect">org.hibernate.dialect.DerbyDialect</prop>
+                <!-- other -->
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.current_session_context_class">thread</prop>
+            </props>
+        </property>
+
+        <property name="dataSource">
+            <ref bean="highviewDataSource"/>
+        </property>
+    </bean>
+
+    <bean id="highviewDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>jdbc/HighView</value>
+        </property>
+        <property name="resourceRef">
+            <value>true</value>
+        </property>
+    </bean>
+
+    <!-- Add the DVDDAOImpl class and resolve the reference to the SessionFactory -->
+    <bean id="DVDDAO" class="springstruts.model.dao.hibernate.DVDDAOImpl">
+        <property name="sessionFactory">
+            <ref bean="MySessionFactory"/>
+        </property>
+    </bean>
+    <!-- Add the DVDBO business Object and resolve the reference to the DVDDAO-->
+
+    <bean name="DVDBusinessObject" class="springstruts.model.DVDBO">
+        <property name="dao">
+            <ref bean="DVDDAO"/>
+        </property>
+    </bean>
+</beans>

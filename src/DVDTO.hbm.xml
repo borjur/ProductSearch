@@ -1,0 +1,18 @@
+<?xml version="1.0"?> 
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+		
+<hibernate-mapping>
+    <class name="springstruts.model.DVDTO" table="dvdtitle">
+        <id name="id" column="DVD_TITLE_ID" access="field">
+            <generator class="assigned"/>
+        </id>
+        <property name="director" length="100"/>
+        <property name="format" length="120"/>
+        <property name="rated" length="40"/>
+        <property name="releaseDate" length="6" column="YEARMONTH_RELEASE"/>
+        <property name="title" length="80"/>
+        <property name="starring" length="255"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?> 
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+        "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+    <action-mappings>
+        <action path="/search">
+            <forward name="showProductList" path="/productList.jsp"/>
+        </action>
+    </action-mappings>
+    <!-- TODO add the  org.springframework.web.struts.DelegatingRequestProcessor -->
+    <controller processorClass="org.springframework.web.struts.DelegatingRequestProcessor"/>
+    <!-- TODO add the org.springframework.web.struts.ContextLoaderPlugIn -->
+    <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn"/>
+</struts-config>
