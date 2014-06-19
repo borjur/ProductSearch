@@ -21,7 +21,7 @@ public class SearchDVDAction extends ActionSupport {
     public void setDvdBO(DVDBO dvdBO) {
         this.dvdBO = dvdBO;
     }
-
+//we have to remember this
     public ActionForward execute(ActionMapping actionMapping, ActionForm actionForm, HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse) throws Exception {
         String searchCriteria = httpServletRequest.getParameter("criteria");
 
